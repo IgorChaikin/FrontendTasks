@@ -1,2 +1,2 @@
-# FrontendTasks
-Universiy tasks about HTML CSS and JS.
+## Игорь Чайкин
+# 853503
