@@ -12,13 +12,14 @@
             <figcaption><h2 class="text_white">TrelloAlikeApp</h2></figcaption>
         </figure>
         <nav>
-            <button class="button button_blue">Login</button>
-            <button class="button button_blue">Register</button>
+            <!--onclick would be deleted in lab 4 it's only for page-jumps imitation!-->
+            <button class="button button_blue" onclick="location.href='login.html'">Login</button>
+            <button class="button button_blue" onclick="location.href='registration.html'">Register</button>
         </nav>
     </header>
     <main>
         <h2 class="text_blue">Login</h2>
-        <form class="auth-form">
+        <form class="auth-form" action="../boards/boards.html">
             <label class="text_blue auth-form__field">
                 Login
                 <input class="text-field" placeholder="Login">
@@ -26,7 +27,7 @@
 
             <label class="text_blue auth-form__field">
                 Password
-                <input class="text-field" placeholder="Password">
+                <input class="text-field" type="password" placeholder="Password">
             </label>
 
             <button class="button button_green" disabled>Submit</button>
@@ -50,4 +51,5 @@
         </section>
     </footer>
 </body>
+
 </html>

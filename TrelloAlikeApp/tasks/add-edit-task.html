@@ -18,13 +18,18 @@
     </figure>
 
     <nav>
-        <button class="button button_blue">Login</button>
-        <button class="button button_blue">Register</button>
+        <!--onclick would be deleted in lab 4 it's only for page-jumps imitation!-->
+        <button class="button button_blue" onclick="location.href='../boards/boards.html'">
+            My boards
+        </button>
+        <button class="button button_blue" onclick="location.href='../authentication/registration.html'">
+            Log out
+        </button>
     </nav>
 </header>
 <main>
     <h2 class="text_blue">Add task to column “Column 1” of board “Board 1”</h2>
-    <form class="task-form">
+    <form class="task-form" action="board.html">
         <div class="row-container">
             <label class="vertical-field main-field text_blue">Color
                 <select class="text-field">

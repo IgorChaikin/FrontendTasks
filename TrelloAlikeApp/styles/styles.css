@@ -34,6 +34,14 @@ body{
     font-family: sans-serif;
 }
 
+a{
+    text-decoration: none;
+}
+
+h4{
+    margin: 0;
+}
+
 ::-webkit-scrollbar {
     width: 10px;
 }

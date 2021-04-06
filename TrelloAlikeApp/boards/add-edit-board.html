@@ -18,8 +18,13 @@
     </figure>
 
     <nav>
-        <button class="button button_blue">Login</button>
-        <button class="button button_blue">Register</button>
+        <!--onclick would be deleted in lab 4 it's only for page-jumps imitation!-->
+        <button class="button button_blue" onclick="location.href='boards.html'">
+            My boards
+        </button>
+        <button class="button button_blue" onclick="location.href='../authentication/registration.html'">
+            Log out
+        </button>
     </nav>
 </header>
 <main>
@@ -34,7 +39,7 @@
         </button>
     </form>
 
-    <form class="board-form">
+    <form class="board-form" action="boards.html">
         <label class="vertical-field main-field text_blue">Color
             <select class="text-field">
                 <option class="item_red text_white">Red</option>

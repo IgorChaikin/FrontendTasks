@@ -18,22 +18,90 @@
     </figure>
 
     <nav>
-        <button class="button button_blue">Login</button>
-        <button class="button button_blue">Register</button>
+        <!--onclick would be deleted in lab 4 it's only for page-jumps imitation!-->
+        <button class="button button_blue" onclick="location.href='../boards/boards.html'">
+            My boards
+        </button>
+        <button class="button button_blue" onclick="location.href='../authentication/registration.html'">
+            Log out
+        </button>
     </nav>
 </header>
 <main>
     <h2 class="text_blue">Board 1</h2>
     <div class="column-list">
 
+        <!--onclick would be deleted in lab 4 it's only for page-jumps imitation!-->
+
         <section class="column-list__item">
-            <form class="edit-column-form">
+            <form class="edit-column-form" action="board.html">
                 <label class="vertical-field main-field text_blue">New column name
                     <input class="underline-field">
                 </label>
                 <button class="button button_blue">Cancel</button>
                 <button class="button button_green">Confirm</button>
             </form>
+
+            <div class="task-list">
+                <article class="task-list__item text_white item_yellow">
+                    <h4>Task1</h4>
+                    <p>Description</p>
+                    <div class="row-container">
+                        <p class>22.03.2021</p>
+                        <button class="icon-button icon-button_white icon-button_shifted">
+                            <i class="fa fa-trash" aria-hidden="true"></i>
+                        </button>
+                        <button class="icon-button icon-button_white">
+                            <i class="fa fa-pencil" aria-hidden="true"></i>
+                        </button>
+                    </div>
+                </article>
+
+                <article class="task-list__item text_white item_green">
+                    <h4>Task1</h4>
+                    <p>Description</p>
+                    <div class="row-container">
+                        <p class>22.03.2021</p>
+                        <button class="icon-button icon-button_white icon-button_shifted">
+                            <i class="fa fa-trash" aria-hidden="true"></i>
+                        </button>
+                        <button class="icon-button icon-button_white">
+                            <i class="fa fa-pencil" aria-hidden="true"></i>
+                        </button>
+                    </div>
+                </article>
+
+                <article class="task-list__item text_white item_cyan">
+                    <h4>Task1</h4>
+                    <p>Description</p>
+                    <div class="row-container">
+                        <p class>22.03.2021</p>
+                        <button class="icon-button icon-button_white icon-button_shifted">
+                            <i class="fa fa-trash" aria-hidden="true"></i>
+                        </button>
+                        <button class="icon-button icon-button_white">
+                            <i class="fa fa-pencil" aria-hidden="true"></i>
+                        </button>
+                    </div>
+                </article>
+            </div>
+
+            <button class="button button_green task-list__button" onclick="location.href='add-edit-task.html'">
+                <i class="fa fa-plus" aria-hidden="true"></i>
+                Add task
+            </button>
+        </section>
+
+        <section class="column-list__item">
+            <div class="row-container">
+                <h3 class="text_blue">Column 2</h3>
+                <button class="icon-button icon-button_blue icon-button_shifted">
+                    <i class="fa fa-trash" aria-hidden="true"></i>
+                </button>
+                <button class="icon-button icon-button_blue" onclick="location.href='edit-column-name.html'">
+                    <i class="fa fa-pencil" aria-hidden="true"></i>
+                </button>
+            </div>
 
             <div class="task-list">
                 <article class="task-list__item text_white item_red">
@@ -50,7 +118,7 @@
                     </div>
                 </article>
 
-                <article class="task-list__item text_white item_orange">
+                <article class="task-list__item text_white item_yellow">
                     <h4>Task1</h4>
                     <p>Description</p>
                     <div class="row-container">
@@ -65,7 +133,7 @@
                 </article>
             </div>
 
-            <button class="button button_green task-list__button">
+            <button class="button button_green task-list__button" onclick="location.href='add-edit-task.html'">
                 <i class="fa fa-plus" aria-hidden="true"></i>
                 Add task
             </button>
