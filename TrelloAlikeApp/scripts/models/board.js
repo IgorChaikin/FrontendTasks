@@ -43,7 +43,7 @@ class Board {
                     name: name,
                     description: description,
                     color: color,
-                    date: new Date(date)
+                    date: date === null ? null : new Date(date)
             });
             this.columns[source_col_idx].remove(tsk_id);
         }

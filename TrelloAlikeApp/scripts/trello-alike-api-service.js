@@ -64,7 +64,7 @@ class TrelloAlikeApiService {
                                             data.boards[brd].columns[col].tasks[tsk].name,
                                             data.boards[brd].columns[col].tasks[tsk].description,
                                             data.boards[brd].columns[col].tasks[tsk].color,
-                                            data.boards[brd].columns[col].tasks[tsk].date === ''? null
+                                            data.boards[brd].columns[col].tasks[tsk].date === ""? null
                                                 : new Date(data.boards[brd].columns[col].tasks[tsk].date)
                                         )
                                     }):[];
