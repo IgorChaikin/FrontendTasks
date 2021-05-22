@@ -1,6 +1,7 @@
 class AddEditTaskController {
-    constructor(view) {
+    constructor(view, service) {
         this._addEditTaskView = view;
+        this._service = service;
     }
 
     setParams(boardName, column, taskId = null) {
@@ -45,7 +46,7 @@ class AddEditTaskController {
                                 color: event.target.elements['color'].value
                             })
                     }
-                    this._tasksController.init();
+                    this._service.setBoardList().then(()=>this._tasksController.init());
                 }
             }
         }

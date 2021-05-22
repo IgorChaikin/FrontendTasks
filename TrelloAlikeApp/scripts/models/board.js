@@ -1,76 +1,77 @@
 class Board {
-    constructor(id, name, color, col = []) {
-        this._id = id;
+    constructor(id, name, color, autoincrement, col = []) {
+        this.id = id;
         this.name = name;
         this.color = color;
-        this._columns = [...col];
-        this._counter = col.length;
-    }
-
-    get id() {
-        return this._id;
+        this.columns = [...col];
+        this.autoincrement = autoincrement;
     }
 
     get length() {
-        return this._columns.length;
+        return this.columns.length;
     }
 
     get(id) {
-        return this._columns.find((element) => element.id === id);
+        return this.columns.find((element) => element.id === id);
     }
 
     get_all() {
-        return this._columns;
+        return this.columns;
     }
 
     add(name) {
         const added = new Column(
-            (this._counter++).toString()+'_C',
-            name);
+            (this.autoincrement++).toString()+'_C',
+            name, 1);
 
-        this._columns.push(added);
+        this.columns.push(added);
     }
 
     edit(id, name) {
-        const index = this._columns.findIndex((element) => element.id === id);
+        const index = this.columns.findIndex((element) => element.id === id);
         if (index >= 0) {
-            this._columns[index].name = name ?? this._columns[index].name;
+            this.columns[index].name = name ?? this.columns[index].name;
         }
     }
 
     move(tsk_id, source_col_id, target_col_id) {
-        const source_col_idx = this._columns.findIndex((element) => element.id === source_col_id);
-        const target_col_idx = this._columns.findIndex((element) => element.id === target_col_id);
+        const source_col_idx = this.columns.findIndex((element) => element.id === source_col_id);
+        const target_col_idx = this.columns.findIndex((element) => element.id === target_col_id);
         if (source_col_idx >= 0 && target_col_idx >= 0) {
-            const { name, description, color, date} = this._columns[source_col_idx];
-            this._columns[target_col_idx].add({
+            const { name, description, color, date} = this.columns[source_col_idx].get(tsk_id);
+            this.columns[target_col_idx].add({
                     name: name,
                     description: description,
                     color: color,
                     date: new Date(date)
             });
-            this._columns[source_col_idx].remove(tsk_id);
+            this.columns[source_col_idx].remove(tsk_id);
         }
     }
 
     remove(id) {
-        const index = this._columns.findIndex((element) => element.id === id);
+        const index = this.columns.findIndex((element) => element.id === id);
         if (index >= 0) {
-            this._columns.splice(index, 1);
+            this.columns.splice(index, 1);
         }
     }
 
     addAll(col) {
-        this._columns = [...this._columns, ...col];
-        this._counter += col.length;
+        this.columns = [...this.columns, ...col];
+        this.autoincrement += col.length;
     }
 
     get JSONObject() {
+        const cols = {};
+        for(const col of this.columns) {
+            cols[col.id] = col.JSONObject;
+        }
+
         return {
-            id: this._id,
             name: this.name,
+            autoincrement: this.autoincrement,
             color: this.color,
-            columns: this._columns.map((col) => col.JSONObject)
+            columns: cols
         }
     }
 

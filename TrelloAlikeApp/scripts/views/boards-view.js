@@ -45,7 +45,7 @@ class BoardsView {
     displayBoards(brd){
         const lst = document.getElementById(this._listId);
         lst.innerHTML = brd.map((item) =>
-            `<section id="${item.id}" class="board-list__item item_${item.color}">
+            `<section id="${item.id}" class="board-list__item item_${item.color}" draggable="true">
                 <h3 class="text_white">${item.name}</h3>
                 <button id="${item.id}-D" class="icon-button icon-button_white icon-button_shifted">
                     <i class="fa fa-trash" aria-hidden="true"></i>

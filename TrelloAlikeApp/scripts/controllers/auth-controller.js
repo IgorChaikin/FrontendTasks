@@ -1,10 +1,12 @@
 class AuthController {
-    constructor(view, logId, regId, formId) {
+    constructor(view, logId, regId, formId, boards, service) {
         this._authView = view;
         this._logId = logId;
         this._regId = regId;
         this._formId = formId;
         this._mode = 'reg';
+        this._boards = boards;
+        this._service = service;
     }
 
     authPageJump(mode) {
@@ -39,18 +41,29 @@ class AuthController {
 
     _login(event) {
         event.preventDefault();
-        /*remake!*/
-        this._boardController.setList(Boards);
-        this._boardController.init();
+        this._service.login(
+            this._authForm.elements['login'].value,
+            this._authForm.elements['password'].value,).then((data)=>{
+                this._service.getBoardList(data.user_id).then(
+                    () => {
+                        this._boardController.setList(this._boards);
+                        this._boardController.init();
+                    })
+            }).catch(()=>this._authView.displayError());
     }
 
     _register(event) {
         event.preventDefault();
-        console.log(this._mode);
-        /*remake!*/
         if(this._authForm.elements['password'].value === this._authForm.elements['repeat'].value) {
-            this._boardController.setList(Boards);
-            this._boardController.init();
+            this._service.register(
+                this._authForm.elements['login'].value,
+                this._authForm.elements['password'].value,).then(()=>{
+                this._service.setBoardList().then(
+                    () => {
+                        this._boardController.setList(this._boards);
+                        this._boardController.init();
+                    });
+                }).catch(()=>this._authView.displayError());
         } else {
             this._authView.displayError();
         }

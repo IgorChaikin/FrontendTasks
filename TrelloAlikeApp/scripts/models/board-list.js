@@ -1,62 +1,86 @@
 class BoardList {
-    constructor(username, user_id, brd = []) {
+    constructor(username, user_id, autoincrement, brd = []) {
         this.username = username;
-        this._user_id = user_id;
-        this._boards = [...brd];
-        this._counter = brd.length;
+        this.user_id = user_id;
+        this.boards = [...brd];
+        this.autoincrement = autoincrement;
     }
 
-    get user_id() {
-        return this._user_id;
-    }
 
     get length() {
-        return this._boards.length;
+        return this.boards.length;
     }
 
     get(id) {
-        return this._boards.find((element) => element.id === id);
+        return this.boards.find((element) => element.id === id);
     }
 
     get_all(name='') {
-        return this._boards.filter((brd) => brd.name.indexOf(name) !== -1);
+        return this.boards.filter((brd) => brd.name.indexOf(name) !== -1);
     }
 
     add(name, color) {
         const added = new Board(
-            (this._counter++).toString()+'_B',
+            (this.autoincrement++).toString()+'_B',
             name,
-            color);
+            color, 1);
 
-        this._boards.push(added);
+        this.boards.push(added);
     }
 
     edit(id, name, color) {
-        const index = this._boards.findIndex((element) => element.id === id);
+        const index = this.boards.findIndex((element) => element.id === id);
         if (index >= 0) {
-            this._boards[index].name = name ?? this._boards[index].name;
-            this._boards[index].color = color ?? this._boards[index].color;
+            this.boards[index].name = name ?? this.boards[index].name;
+            this.boards[index].color = color ?? this.boards[index].color;
         }
     }
 
     remove(id) {
-        const index = this._boards.findIndex((element) => element.id === id);
+        const index = this.boards.findIndex((element) => element.id === id);
         if (index >= 0) {
-            this._boards.splice(index, 1);
+            this.boards.splice(index, 1);
         }
     }
 
+    replace(source_id, target_id) {
+        const source_idx = this.boards.findIndex((element) => element.id === source_id);
+        const target_idx = this.boards.findIndex((element) => element.id === target_id);
+        if (source_idx >= 0 && target_idx >= 0) {
+            const tmp_list = this.boards[source_idx].columns;
+            this.boards[source_idx].columns = this.boards[target_idx].columns;
+            this.boards[target_idx].columns = tmp_list;
+
+            let tmp = this.boards[source_idx].name;
+            this.boards[source_idx].name = this.boards[target_idx].name;
+            this.boards[target_idx].name = tmp;
+
+            tmp = this.boards[source_idx].color;
+            this.boards[source_idx].color = this.boards[target_idx].color;
+            this.boards[target_idx].color = tmp;
+
+            tmp = this.boards[source_idx].autoincrement;
+            this.boards[source_idx].autoincrement = this.boards[target_idx].autoincrement;
+            this.boards[target_idx].autoincrement = tmp;
+        }
+
+    }
+
     addAll(brd) {
-        this._boards = [...this._boards, ...brd];
-        this._counter += brd.length;
+        this.boards = [...this.boards, ...brd];
     }
 
 
     get JSONObject() {
+        const brds = {};
+        for(const brd of this.boards) {
+            brds[brd.id] = brd.JSONObject;
+        }
+
         return {
             username: this.username,
-            user_id: this._user_id,
-            boards: this._boards.map((brd) => brd.JSONObject)
+            autoincrement: this.autoincrement,
+            boards: brds
         }
     }
 
